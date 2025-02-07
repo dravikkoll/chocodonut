@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <title>AR Product Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .ar-button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        model-viewer {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>View Products in AR</h2>
+
+    <!-- Cute Milkshake -->
+    <h3>Cute Milkshake</h3>
+    <model-viewer 
+        id="milkshakeModel"
+        src="https://raw.githubusercontent.com/dravikkoll/ar-models/main/cute_milkshake.glb"
+        alt="3D Model of Cute Milkshake"
+        camera-controls 
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+    </model-viewer>
+    <button class="ar-button" onclick="viewInAR('milkshakeModel')">View in AR</button>
+
+    <hr>
+
+    <!-- Krackjack -->
+    <h3>Krackjack</h3>
+    <model-viewer 
+        id="krackjackModel"
+        src="https://github.com/dravikkoll/dravikmain/blob/7ad9be408c799748e87e0d8b22884a781bb50f77/AR-Code-Object-Capture-app-1738916103.glb"
+        alt="3D Model of Krackjack"
+        camera-controls 
+        auto-rotate
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+    </model-viewer>
+    <button class="ar-button" onclick="viewInAR('krackjackModel')">View in AR</button>
+
+    <script>
+        function viewInAR(modelId) {
+            let modelViewer = document.getElementById(modelId);
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert("AR is not supported on your device or browser.");
+            }
+        }
+    </script>
+
+</body>
+</html>
